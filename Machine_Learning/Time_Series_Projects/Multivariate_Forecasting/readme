@@ -1,0 +1,10 @@
+# Multivariate Forecasting
+
+Predicting future Values 
+Multivariate Timeseries are challenging especially when we want to forecast for future unknown values. In a univariate, this is easy, you can do this using ARIMA or SARIMAX by specifying the number of future values you want to forecast. However, with multivariate timeseries, it is not that simple. We have multiple variable whose future values are unknown. For example, to forecast weather conditions for the next coming two weeks will be a bit more challenging since we do not have the predictors information for the next two weeks. 
+Suppose we have 4 independent variables plus 1 target variable. How can we forecast for the target variable using these 4 independent variables as our predictors? 
+One thing you can notice is that we do not have information about the future of these 4 independent variables. Even predictive machine learning models requires information about the predictors before we can make a prediction for our target variable. 
+So, what is the approach? 
+There are two methodologies I have come across so far, viz:
+1.	We isolate each variable and treat it as a univariate problem whereby we forecast for the desired number of future values. We can use an ARIMA or SARIMAX for each variable, independently, and once we have the future forecasted values, we can consolidate the forecasted variables into one dataframe. From this, since we have future values, we can do the future forecast/prediction of the target variable. Then We can apply an LSTM, facebook prophet, SARIMAX with exogenous features, etc.
+2.	Another strategy is to use VAR. VAR model which creates separate equation and gives out model coefficients for each variable. In this case you might be able to predict all variables in future forecast. Challenge is each variable will have its error and overall can distort your target prediction as well.
