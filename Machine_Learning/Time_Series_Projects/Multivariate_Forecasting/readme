@@ -8,3 +8,6 @@ So, what is the approach?
 There are two methodologies I have come across so far, viz:
 1.	We isolate each variable and treat it as a univariate problem whereby we forecast for the desired number of future values. We can use an ARIMA or SARIMAX for each variable, independently, and once we have the future forecasted values, we can consolidate the forecasted variables into one dataframe. From this, since we have future values, we can do the future forecast/prediction of the target variable. Then We can apply an LSTM, facebook prophet, SARIMAX with exogenous features, etc.
 2.	Another strategy is to use VAR. VAR model which creates separate equation and gives out model coefficients for each variable. In this case you might be able to predict all variables in future forecast. Challenge is each variable will have its error and overall can distort your target prediction as well.
+
+# Shuffle = False, this is important because we are dealing with a timeseries data, the order is very important
+x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.20, random_state=123, shuffle=False)
